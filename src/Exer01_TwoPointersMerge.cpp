@@ -16,7 +16,42 @@ public:
     // Retorna o vetor C unificado a partir dos vetores A e B
     vector<int> mergeArrays(const vector<int>& A, const vector<int>& B)
     {
+        int n = A.size();
+        int m = B.size();
 
+        vector<int> C(n + m);
+
+        int i = 0; // Ponteiro para varrer o vetor A
+        int j = 0; // Ponteiro para varrer o vetor B
+        int k = 0; // Ponteiro de escrita no vetor C
+
+        // Caminha pelos dois vetores enquanto ambos tiverem elementos
+        while (i < n && j < m)
+        {
+            if (A[i] <= B[j])
+            {
+                C[k++] = A[i++]; // Copia de A e avança os ponteiros
+            }
+
+            else
+            {
+                C[k++] = B[j++]; // Copia de B e avança os ponteiros
+            }
+        }
+
+        // Recolhe os elementos que sobraram no vetor A (se houver)
+        while (i < n)
+        {
+            C[k++] = A[i++];
+        }
+
+        // Recolhe os elementos que sobraram no vetor B (se houver)
+        while (j < m)
+        {
+            C[k++] = B[j++];
+        }
+
+        return C;
     }
 };
 
